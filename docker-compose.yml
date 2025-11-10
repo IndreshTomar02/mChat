@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    ports: ['27017:27017']
+    volumes:
+      - mongo-data:/data/db
+  backend:
+    build: ./backend
+    command: npm run dev
+    volumes:
+      - ./backend:/usr/src/app
+    ports: ['4000:4000']
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/nimbus_chat
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - JWT_SECRET=${JWT_SECRET:-secret}
+volumes:
+  mongo-data:
