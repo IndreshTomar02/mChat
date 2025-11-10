@@ -1,4 +1,4 @@
-Nimbus - AI-Powered Chatbot (Monorepo)
+AI-Powered Chatbot (Monorepo)
 Structure:
  - backend/  : Express + MongoDB + OpenAI provider abstraction
  - frontend/ : React app (create-react-app style) with SSE streaming UI
