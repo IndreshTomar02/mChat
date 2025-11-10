@@ -1,6 +1,21 @@
-Nimbus Backend - quick start
-1. Copy .env.example to .env and set values (OPENAI_API_KEY, MONGODB_URI, JWT_SECRET)
-2. npm install
-3. npm run seed   # creates demo user demo@local / password
-4. npm run dev
-Notes: The openai provider included is a skeleton for non-streaming calls. Streaming support requires handling OpenAI streaming responses and relaying chunks to clients (SSE or websockets).
+Nimbus - AI-Powered Chatbot (Monorepo)
+Structure:
+ - backend/  : Express + MongoDB + OpenAI provider abstraction
+ - frontend/ : React app (create-react-app style) with SSE streaming UI
+
+Quick start (local):
+1. Start MongoDB (or use Docker Compose):
+   docker compose up -d
+2. Backend:
+   cd backend
+   cp .env.example .env   # edit values (OPENAI_API_KEY, JWT_SECRET)
+   npm install
+   npm run seed
+   npm run dev
+3. Frontend:
+   cd frontend
+   npm install
+   npm start
+Notes on streaming:
+ - A sample SSE stream endpoint is implemented at GET /api/chat/stream (demo echo).
+ - To enable OpenAI streaming, update providers/openaiProvider.js to handle response stream and forward to SSE clients.
